@@ -1,0 +1,46 @@
+{
+  "vuets": {
+    "prefix": "vuets",
+    "body": [
+      "<template>",
+      "  <div></div>",
+      "</template>",
+      "",
+      "<script lang=\"ts\">",
+      "// core",
+      "import { defineComponent } from 'vue'",
+      "",
+      "// utils",
+      "",
+      "// type",
+      "",
+      "// hooks",
+      "",
+      "// config",
+      "",
+      "// component",
+      "",
+      "export default defineComponent({",
+      "  setup() {",
+      "    return {}",
+      "  }",
+      "})",
+      "</script>",
+      "",
+      "<style scoped lang=\"less\"></style>",
+      ""
+    ],
+    "description": "vuets"
+  },
+  "vuesetup": {
+    "prefix": "vuesetup",
+    "body": [
+      "<script setup lang=\"ts\"></script>",
+      "<template>",
+      "  <div></div>",
+      "</template>",
+      ""
+    ],
+    "description": "vuesetup"
+  }
+}
