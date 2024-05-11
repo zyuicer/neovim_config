@@ -8,27 +8,23 @@ return {
 	dependencies = { "rafamadriz/friendly-snippets" },
 	config = function()
 		local ls = require("luasnip")
-		local snip = ls.snippet
-		local node = ls.snippet_node
-		local text = ls.text_node
-		local insert = ls.insert_node
-		local func = ls.function_node
-		local choice = ls.choice_node
-		local dynamicn = ls.dynamic_node
 
-		ls.add_snippets(nil, {
-			all = {
-				snip({
-					trig = "vuesetup",
-					namr = "VueSetup",
-					dscr = "vue setup ",
-				}, {
-					text({
-						'<script lang="ts" setup></script>',
-						"<template></template>",
-					}),
-				}),
-			},
-		})
+		vim.keymap.set({ "i" }, "<C-K>", function()
+			ls.expand()
+		end, { silent = true })
+		vim.keymap.set({ "i", "s" }, "<C-L>", function()
+			ls.jump(1)
+		end, { silent = true })
+		vim.keymap.set({ "i", "s" }, "<C-J>", function()
+			ls.jump(-1)
+		end, { silent = true })
+
+		vim.keymap.set({ "i", "s" }, "<C-E>", function()
+			if ls.choice_active() then
+				ls.change_choice(1)
+			end
+		end, { silent = true })
+
+		require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./lua/config/snippets" } })
 	end,
 }

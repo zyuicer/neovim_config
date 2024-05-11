@@ -1,7 +1,5 @@
 local safeRequire = require("lib").safeRequire
-
 safeRequire("config.normaliz_config")
-
 -- yy text color
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	pattern = { "*" },
@@ -48,8 +46,8 @@ cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+			-- require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 			-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
 			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
 		end,
@@ -149,7 +147,6 @@ local function my_on_attach(bufnr)
 	vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
 end
 
-
 --nvim.tresitter
 
 -- vim-cmp
@@ -159,8 +156,8 @@ cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-			-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 			-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
 			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
 		end,

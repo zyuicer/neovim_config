@@ -55,6 +55,14 @@ return {
 					name = "Gitignore",
 				},
 			},
+
+			override_by_filename = {
+				[".prettierrc"] = {
+					icon = "",
+					color = "#f1502f",
+					name = "Gitignore",
+				},
+			},
 			-- same as `override` but specifically for overrides by extension
 			-- takes effect when `strict` is true
 			override_by_extension = {

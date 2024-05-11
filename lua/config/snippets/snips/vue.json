@@ -1,0 +1,13 @@
+{
+	 "vuesetup": {
+    "prefix": "vuesetup",
+    "body": [
+      "<script setup lang=\"ts\"></script>",
+      "<template>",
+      "  <div></div>",
+      "</template>",
+      ""
+    ],
+    "description": "vuesetup"
+  }
+}

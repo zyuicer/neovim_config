@@ -1,7 +1,7 @@
 return {
 	event = "VeryLazy",
 	"neovim/nvim-lspconfig",
-	dependencies = { "williamboman/mason-lspconfig.nvim" },
+	dependencies = { "williamboman/mason-lspconfig.nvim", "simrat39/rust-tools.nvim" },
 	config = function()
 		-- lsp:
 		local lspconfig = require("lspconfig")
@@ -84,6 +84,18 @@ return {
 		-- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
 		--	capabilities = capabilities
 		--}
+		local rt = require("rust-tools")
+
+		rt.setup({
+			server = {
+				on_attach = function(_, bufnr)
+					-- Hover actions
+					vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+					-- Code action groups
+					vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+				end,
+			},
+		})
 
 		lspconfig.eslint.setup({})
 		lspconfig.unocss.setup({

@@ -1,0 +1,19 @@
+{
+"reactts": {
+    "prefix": "reactts",
+    "body": [
+      "import React, { FC, memo } from \"react\";",
+      "import type {PropsWithChildren} from \"react\";",
+      "",
+      "interface IProps extends PropsWithChildren {}",
+      "",
+      "const $1: FC<IProps> = () => {",
+      "  return <div>$1</div>;",
+      "};",
+      "",
+      "export default memo($1);",
+      ""
+    ],
+    "description": "reactts"
+  }
+}

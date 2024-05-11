@@ -13,3 +13,5 @@ return {
 		"Toggle Flash Search" },
 	},
 }
+
+
