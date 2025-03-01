@@ -7,10 +7,23 @@
           "typescriptreact"
         ],
         "path": "./snips/tsx.json"
+      },
+      {
+        "language": [
+          "vue"
+        ],
+        "path": "./snips/vue.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact",
+          "javascript",
+          "javascriptreact",
+          "commonjavascript"
+        ],
+        "path": "./snips/js.json"
       }
     ]
   }
 }
-
-
-  

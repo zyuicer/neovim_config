@@ -8,7 +8,22 @@ return {
 		vim.keymap.set("n", "<leader>c", vim.diagnostic.open_float)
 		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 		vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-		vim.keymap.set("n", "<leader>e", vim.diagnostic.setloclist)
+		vim.keymap.set("n", "<leader>e", function()
+			local is_open = false
+			for _, win in pairs(vim.fn.getwininfo()) do
+				if win["quickfix"] == 1 then
+					is_open = true
+					break
+				end
+			end
+
+			-- 根据是否已打开来决定是关闭还是打开 quickfix 列表
+			if is_open then
+				vim.cmd("cclose")
+			else
+				vim.cmd("copen")
+			end
+		end, { noremap = true, silent = true })
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -37,11 +52,17 @@ return {
 			end,
 		})
 
+		vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
+			callback = function()
+				vim.diagnostic.setqflist({ open = false })
+			end,
+		})
+
 		require("mason").setup()
 		local util = require("lspconfig.util")
 		require("mason-lspconfig").setup({
 			ensure_installed = {
-				"tsserver",
+				"ts_ls",
 				"html",
 				"rust_analyzer",
 				"cssls",
@@ -60,7 +81,9 @@ return {
 			capabilities = capabilities,
 		})
 
-		lspconfig.tsserver.setup({})
+		lspconfig.ts_ls.setup({
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		})
 		lspconfig.gopls.setup({
 			filetypes = {
 				"go",
@@ -72,7 +95,9 @@ return {
 			single_file_support = true,
 		})
 
-		lspconfig.volar.setup({})
+		lspconfig.volar.setup({
+			filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+		})
 
 		lspconfig.rust_analyzer.setup({
 			-- Server-specific settings. See `:help lspconfig-setup`
@@ -84,6 +109,8 @@ return {
 		-- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
 		--	capabilities = capabilities
 		--}
+		lspconfig.taplo.setup({})
+
 		local rt = require("rust-tools")
 
 		rt.setup({

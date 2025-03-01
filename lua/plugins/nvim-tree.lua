@@ -1,26 +1,40 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",
+	event = "VeryLazy",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
-		-- empty setup using defaults
-		require("nvim-tree").setup({
-			on_attach = my_on_attach,
-		})
+		vim.g.loaded_netrw = 1
+		vim.g.loaded_netrwPlugin = 1
 
+		-- optionally enable 24-bit colour
+		vim.opt.termguicolors = true
 		-- OR setup with some options
 		require("nvim-tree").setup({
-			sort_by = "case_sensitive",
+			git = {
+				ignore = false,
+			},
+			sort = {
+				sorter = "case_sensitive",
+			},
 			view = {
-				width = 30,
+				width = 40,
+				preserve_window_proportions = true, -- 保持文件树的窗口比例（默认：true）
+				side = "left", -- 设置侧边栏显示位置
+				relativenumber = false,
 			},
 			renderer = {
 				group_empty = true,
 			},
 			filters = {
 				dotfiles = false,
+			},
+			update_focused_file = {
+				enable = true, -- 启用自动定位
+				update_cwd = false, -- 更新当前工作目录
+				ignore_list = {}, -- 忽略列表中的文件不会触发定位
 			},
 		})
 		require("nvim-web-devicons").setup({

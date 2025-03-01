@@ -3,6 +3,13 @@ return {
 	event = "VeryLazy",
 	---@type Flash.Config
 	opts = {},
+	config = function()
+		require("flash").setup({
+			search = {
+				visible = false, -- 将 `visible` 设置为 `false`，查找整个文件而不是仅可见区域
+			},
+		})
+	end,
 	-- stylua: ignore
 	keys = {
 		{ "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
@@ -13,5 +20,3 @@ return {
 		"Toggle Flash Search" },
 	},
 }
-
-

@@ -25,6 +25,11 @@ return {
 			end
 		end, { silent = true })
 
+		ls.filetype_extend("typescriptreact", { "tsx" })
+		ls.filetype_extend("vue", { "vue" })
+		ls.filetype_extend("javascript", { "js", "cjs", "mjs", "ts", "jsx", "tsx" })
+		ls.filetype_extend("typescript", { "js", "ts", "tsx" })
+
 		require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./lua/config/snippets" } })
 	end,
 }

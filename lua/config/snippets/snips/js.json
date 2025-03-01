@@ -1,0 +1,17 @@
+{
+  "log": {
+    "prefix": "log",
+    "body": ["console.log($1)"],
+    "description": "help snipp log info methods in javascript/typescript"
+  },
+  "warn": {
+    "prefix": "error",
+    "body": ["console.warn($1)"],
+    "description": "help snipp log warn methods in javascript/typescript"
+  },
+  "error": {
+    "prefix": "error",
+    "body": ["console.error($1)"],
+    "description": "help snipp log error methods in javascript/typescript"
+  }
+}
