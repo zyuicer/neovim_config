@@ -2,7 +2,7 @@ return {
 	"Mofiqul/dracula.nvim",
 	lazy = true,
 	config = function()
-		require('dracula').setup({
+		require("dracula").setup({
 			-- customize dracula color palette
 			colors = {
 				bg = "#282a35",
@@ -27,6 +27,7 @@ return {
 				visual = "#3E4452",
 				gutter_fg = "#4B5263",
 				nontext = "#3B4048",
+				LineNr = "#FF92DF",
 			},
 			-- show the '~' characters after the end of buffers
 			show_end_of_buffer = true, -- default false
@@ -35,7 +36,7 @@ return {
 			-- set custom lualine background color
 			lualine_bg_color = "#44475a", -- default nil
 			-- set italic comment
-			italic_comment = true,     -- default false
+			italic_comment = true, -- default false
 			-- overrides the default highlights see `:h synIDattr`
 			overrides = {
 				-- Examples
@@ -44,6 +45,5 @@ return {
 				-- Nothing = {} -- clear highlight of Nothing
 			},
 		})
-
-	end
+	end,
 }

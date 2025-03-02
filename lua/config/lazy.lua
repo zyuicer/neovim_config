@@ -23,6 +23,10 @@ vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
 require("lazy").setup({
+	{
+		"3rd/image.nvim",
+		opts = {},
+	},
 	spec = {
 		-- import your plugins
 		{ import = "plugins" },
@@ -32,4 +36,8 @@ require("lazy").setup({
 	install = { colorscheme = { "habamax" } },
 	-- automatically check for plugin updates
 	checker = { enabled = true },
+}, {
+	rocks = {
+		hererocks = true, -- recommended if you do not have global installation of Lua 5.1.
+	},
 })

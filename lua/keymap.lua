@@ -27,8 +27,7 @@ keymap.set("v", "<", "<gv", opt)
 -- bufferline
 keymap.set("n", "<leader>h", ":BufferLineCyclePrev<CR>", opt)
 keymap.set("n", "<leader>l", ":BufferLineCycleNext<CR>", opt)
-keymap.set("n", "<leader>W", ":BufferLinePickClose<CR>", opt)
-keymap.set("n", "<C-c>", ":BufferLinePick<CR>", opt)
+keymap.set("n", "<C-c>", ":bdelete<CR>", opt)
 
 --neotest test scheam
 keymap.set("n", "<leader>d", ":Neotest run<CR>", opt)
