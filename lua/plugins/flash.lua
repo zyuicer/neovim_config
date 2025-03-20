@@ -1,14 +1,11 @@
+--[[ 快速搜索并可跳转视图内的内容 ]]
 return {
 	"folke/flash.nvim",
 	event = "VeryLazy",
 	---@type Flash.Config
 	opts = {},
 	config = function()
-		require("flash").setup({
-			search = {
-				visible = false, -- 将 `visible` 设置为 `false`，查找整个文件而不是仅可见区域
-			},
-		})
+		require("flash").setup({})
 	end,
 	-- stylua: ignore
 	keys = {

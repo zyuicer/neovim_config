@@ -1,3 +1,4 @@
+--[[ 文件结构展示 ]]
 return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",

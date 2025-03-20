@@ -1,3 +1,4 @@
+--[[ git帮助 ]]
 return {
 	"lewis6991/gitsigns.nvim",
 	config = function()

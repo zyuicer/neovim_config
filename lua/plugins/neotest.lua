@@ -1,3 +1,4 @@
+--[[ 兼容各个测试的插件 ]]
 return {
 	"nvim-neotest/neotest",
 	event = "VeryLazy",

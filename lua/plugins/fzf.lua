@@ -1,3 +1,4 @@
+--[[ 检索文件插件 ]]
 return {
 	"ibhagwan/fzf-lua",
 	cmd = "FzfLua",
@@ -20,6 +21,10 @@ return {
 			desc = "Fuzzy find the file than open",
 		},
 		{
+			"<leader>ch",
+			":FzfLua command_history<CR>",
+		},
+		{
 			"<leader>cc",
 			":FzfLua commands<CR>",
 			{
@@ -33,10 +38,17 @@ return {
 		require("fzf-lua").setup({
 			winopts = {
 				height = 0.9, -- 设置 fzf 窗口的高度
-				width = 0.7, -- 设置 fzf 窗口的宽度
+				width = 0.75, -- 设置 fzf 窗口的宽度
 				preview = {
 					hidden = "nohidden", -- 显示隐藏文件
 					wrap = "wrap",
+				},
+			},
+			actions = {
+				files = {
+					["default"] = function(selected, opts)
+						require("fzf-lua").actions.file_edit(selected, opts)
+					end,
 				},
 			},
 			fzf_opts = {

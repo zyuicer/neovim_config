@@ -1,9 +1,10 @@
+--[[ 所在光标的动画过渡 ]]
 return {
 	"gen740/SmoothCursor.nvim",
 	config = function()
 		require("smoothcursor").setup({
 			type = "exp", -- 也可以尝试 "exp" 或 "matrix" 等不同的动画类型
-			speed = 40, -- 速度（越大越快）
+			speed = 30, -- 速度（越大越快）
 			fancy = {
 				enable = true, -- 开启 fancy 模式，支持拖尾效果
 				head = { cursor = "", texthl = "SmoothCursor", linehl = nil },

@@ -1,41 +1,35 @@
+--[[ 记录打开的文件tabs ]]
 vim.opt.termguicolors = true
 return {
 	"akinsho/bufferline.nvim",
 	dependencies = "nvim-tree/nvim-web-devicons",
+	version = "*",
 	config = function()
-		require("bufferline").setup({
+		local bufferline = require("bufferline")
+		bufferline.setup({
 			options = {
-				mode = "buffers", -- 显示 buffer 而不是 tabs
-				close_command = "bdelete! %d", -- 点击关闭按钮关闭
-				right_mouse_command = "bdelete! %d", -- 右键点击关闭
-				diagnostics = "nvim_lsp", -- 显示 LSP 诊断信息
-				separator_style = "slant",
-				color_icons = true,
-				buffer_close_icon = "󰅖",
-				modified_icon = "●",
-				close_icon = "",
-				show_buffer_icons = true,
-				show_buffer_close_icons = true,
-				show_tab_indicators = true,
+				mode = "buffer", -- 或 "tabs"，根据需要选择
+				separator_style = "slant", -- 标签分隔符样式，可选 "slant"、"thin" 等
 				always_show_bufferline = true,
+				show_buffer_close_icons = true,
+				show_close_icon = true,
+				color_icons = true, -- 启用图标颜色
+				diagnostics = "nvim_lsp", -- 启用 LSP 诊断信息
+				diagnostics_indicator = function(count, level)
+					local icon = level:match("error") and " " or " "
+					return " " .. icon .. count
+				end,
 				offsets = {
 					{
-						text_align = "left",
 						filetype = "NvimTree",
 						text = "File Explorer",
 						highlight = "Directory",
-						separator = true, -- 在 NvimTree 和 buffers 之间加一条分割线
+						text_align = "left",
 					},
 				},
-				highlights = {
-					buffer_selected = {
-						gui = "bold",
-						italic = false,
-					},
-					separator_selected = {
-						fg = "#ffcc00", -- 选中 buffer 的分割线颜色
-					},
-				},
+				numbers = function(opts)
+					return string.format("%s", opts.ordinal)
+				end,
 			},
 		})
 	end,

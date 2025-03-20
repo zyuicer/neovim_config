@@ -1,3 +1,4 @@
+--[[ 快速代码块 ]]
 return {
 	"L3MON4D3/LuaSnip",
 	-- follow latest release.

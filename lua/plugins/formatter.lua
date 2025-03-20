@@ -1,3 +1,4 @@
+--[[ 初始化插件 ]]
 return {
 	"mhartington/formatter.nvim",
 	config = function()

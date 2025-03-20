@@ -1,3 +1,4 @@
+--[[ 代码提示 ]]
 return {
 	event = "VeryLazy",
 	"neovim/nvim-lspconfig",
@@ -5,25 +6,9 @@ return {
 	config = function()
 		-- lsp:
 		local lspconfig = require("lspconfig")
-		vim.keymap.set("n", "<leader>c", vim.diagnostic.open_float)
+		vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float)
 		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 		vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-		vim.keymap.set("n", "<leader>e", function()
-			local is_open = false
-			for _, win in pairs(vim.fn.getwininfo()) do
-				if win["quickfix"] == 1 then
-					is_open = true
-					break
-				end
-			end
-
-			-- 根据是否已打开来决定是关闭还是打开 quickfix 列表
-			if is_open then
-				vim.cmd("cclose")
-			else
-				vim.cmd("copen")
-			end
-		end, { noremap = true, silent = true })
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -38,9 +23,18 @@ return {
 				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-				vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+				vim.keymap.set("n", "<C-K>", vim.lsp.buf.signature_help, opts)
+
 				vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
 				vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+				vim.keymap.set("n", "<leader>e", function()
+					if vim.fn.getqflist({ winid = 0 }).winid ~= 0 then
+						vim.cmd("cclose")
+					else
+						vim.cmd("copen")
+					end
+				end, { silent = true, noremap = true })
+
 				vim.keymap.set("n", "<leader>wl", function()
 					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 				end, opts)
@@ -52,9 +46,9 @@ return {
 			end,
 		})
 
-		vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
+		vim.api.nvim_create_autocmd("DiagnosticChanged", {
 			callback = function()
-				vim.diagnostic.setqflist({ open = false })
+				vim.diagnostic.setqflist({ open = false }) -- 只刷新 QuickFix，不自动打开
 			end,
 		})
 
@@ -102,7 +96,11 @@ return {
 		lspconfig.rust_analyzer.setup({
 			-- Server-specific settings. See `:help lspconfig-setup`
 			settings = {
-				["rust-analyzer"] = {},
+				["rust-analyzer"] = {
+					checkOnSave = {
+						command = "clippy",
+					},
+				},
 			},
 		}) -- Set up lspconfig.
 		-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.

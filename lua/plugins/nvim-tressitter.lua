@@ -1,3 +1,4 @@
+--[[ 代码高亮 ]]
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",

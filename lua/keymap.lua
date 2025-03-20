@@ -31,3 +31,6 @@ keymap.set("n", "<C-c>", ":bdelete<CR>", opt)
 
 --neotest test scheam
 keymap.set("n", "<leader>d", ":Neotest run<CR>", opt)
+
+keymap.set("n", "Q", ":quit<CR>", opt)
+

@@ -1,3 +1,4 @@
+--[[ 代码提示 ]]
 return {
 	event = "VeryLazy",
 	"hrsh7th/nvim-cmp",
