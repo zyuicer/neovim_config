@@ -37,6 +37,13 @@ return {
 				update_cwd = false, -- 更新当前工作目录
 				ignore_list = {}, -- 忽略列表中的文件不会触发定位
 			},
+			actions = {
+				remove_file = {
+					close_window = true,
+					trash = true,
+					command = "trash", -- 使用 Linux/macOS 上的 `trash-cli`
+				},
+			},
 		})
 		require("nvim-web-devicons").setup({
 			-- your personnal icons can go here (to override)

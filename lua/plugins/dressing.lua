@@ -1,7 +1,7 @@
 --[[ 美化 :input ui ]]
 return {
 	"stevearc/dressing.nvim",
-	enabled = true, -- 已经有了 snacks基本美化配置包不需要单独配置
+	enabled = false, -- 已经有了 snacks基本美化配置包不需要单独配置
 	config = function()
 		require("dressing").setup({
 			input = {

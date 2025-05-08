@@ -9,7 +9,7 @@ return {
 		explorer = { enabled = true },
 		indent = { enabled = true },
 		input = {
-			enabled = false,
+			enabled = true,
 		},
 		notifier = { enabled = true },
 		picker = { enabled = true },

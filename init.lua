@@ -109,6 +109,14 @@ cmp.setup.cmdline(":", {
 	}, {
 		{ name = "cmdline" },
 	}),
+	completion = {
+		autocomplete = { cmp.ConfirmBehavior.Insert, cmp.ConfirmBehavior.Replace },
+	},
+	-- 启用 dressing.nvim 来美化补全
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
 })
 
 -- nvim.tree

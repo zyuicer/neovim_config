@@ -51,6 +51,9 @@ return {
 					end,
 				},
 			},
+			colorschemes = {
+				enable_preview = true, -- ✅ 预览切换效果
+			},
 			fzf_opts = {
 				-- options are sent as `<left>=<right>`
 				-- set to `false` to remove a flag
