@@ -2,7 +2,7 @@
 return {
 	event = "VeryLazy",
 	"neovim/nvim-lspconfig",
-	dependencies = { "williamboman/mason-lspconfig.nvim", "simrat39/rust-tools.nvim" },
+	dependencies = { "mason-org/mason-lspconfig.nvim", "simrat39/rust-tools.nvim" },
 	config = function()
 		-- lsp:
 		local lspconfig = require("lspconfig")
@@ -52,7 +52,6 @@ return {
 			end,
 		})
 
-		require("mason").setup()
 		local util = require("lspconfig.util")
 		require("mason-lspconfig").setup({
 			ensure_installed = {
@@ -64,13 +63,11 @@ return {
 				"gopls",
 				"volar",
 			},
+			automatic_enable = false,
 		})
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-		require("neodev").setup({
-			-- add any options here, or leave empty to use the default settings
-		})
 		require("lspconfig").lua_ls.setup({
 			capabilities = capabilities,
 		})

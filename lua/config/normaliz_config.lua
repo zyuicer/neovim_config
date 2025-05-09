@@ -1,4 +1,7 @@
 local set = vim.o
+local opt = vim.opt
+
+opt.cursorline = true
 
 local o_options = {
 	tabstop = 2,
