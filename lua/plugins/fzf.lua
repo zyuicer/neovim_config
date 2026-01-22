@@ -25,6 +25,10 @@ return {
 			":FzfLua command_history<CR>",
 		},
 		{
+			"<leader>H",
+			":FzfLua jumps<CR>"
+		},
+		{
 			"<leader>cc",
 			":FzfLua commands<CR>",
 			{

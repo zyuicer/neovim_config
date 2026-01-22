@@ -16,13 +16,13 @@ keymap.set("n", "k", [[v:count ? 'k' : 'gk']], { noremap = true, expr = true })
 keymap.set("n", "<leader>t", ":NvimTreeToggle<CR>", opt)
 keymap.set("n", "<leader>Tr", ":NvimTreeResize ", opt)
 
+-- keymap.set("n", "<leader>f", ":FormatWrite<CR>", opt)
+
 -- visual
 keymap.set("v", ">", ">gv", opt)
 keymap.set("v", "<", "<gv", opt)
-
--- move text up or down
---keymap.set("v", "<C-j>", ":m .+1<CR>==", opt)
--- keymap.set("v", "<C-k>", ":m .-2<CR>==", opt)
+keymap.set("v", "J", ":m '>+1<CR>gv=gv", opt)
+keymap.set("v", "K", ":m '<-2<CR>gv=gv", opt)
 
 -- bufferline
 keymap.set("n", "<leader>h", ":BufferLineCyclePrev<CR>", opt)
@@ -33,4 +33,3 @@ keymap.set("n", "<C-c>", ":bdelete<CR>", opt)
 keymap.set("n", "<leader>d", ":Neotest run<CR>", opt)
 
 keymap.set("n", "Q", ":quit<CR>", opt)
-

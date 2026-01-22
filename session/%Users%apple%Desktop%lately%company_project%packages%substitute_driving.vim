@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/.config/nvim
+cd ~/Desktop/lately/company_project/packages/substitute_driving
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,51 +13,57 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 lua/plugins/conform.lua
-badd +1 lua/plugins/blink.lua
-badd +15 lua/plugins/bufferline.lua
-badd +11 lua/plugins/nvim-cmp.lua
-badd +38 init.lua
-badd +54 lua/plugins/mason-lspconfig.lua
-badd +16 lua/config/lazy.lua
-badd +95 lua/plugins/blink-cmp.lua
-badd +41 lua/config/normaliz_config.lua
-badd +1 lua/lsp/rust_anyalzer.lua
-badd +1 lua/plugins/nvim-tree.lua
-badd +1 lua/plugins/nvim-treesitter-context.lua
-badd +1 lua/plugins/nvim-web-devicons.lua
-badd +1 lua/plugins/nvim-ufo.lua
-badd +1 lua/plugins/auto-close.lua
-badd +1 lua/plugins/auto-save.lua
-badd +1 lua/plugins/blankline.lua
-badd +1 lua/plugins/toggleterm.lua
-badd +14 lua/lsp/init.lua
-badd +1 ~/.config/nvim/lua/lsp/clangd.lua
-badd +27 lua/lsp/bash.lua
-badd +28 lua/keymap.lua
-badd +2 man://local(8)
-badd +10 lua/lsp/bashls.lua
-badd +11 ~/.config/nvim/lua/plugins/luasnippet.lua
-badd +44 lua/plugins/git.lua
+badd +10 src/pages/home/index.vue
 argglobal
 %argdel
-edit lua/plugins/git.lua
+edit src/pages/home/index.vue
 argglobal
-balt lua/keymap.lua
 setlocal foldmethod=expr
-setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
+setlocal foldexpr=nvim_treesitter#foldexpr()
 setlocal foldmarker={{{,}}}
 setlocal foldignore=#
 setlocal foldlevel=99
 setlocal foldminlines=1
 setlocal foldnestmax=20
-setlocal nofoldenable
-let s:l = 44 - ((25 * winheight(0) + 23) / 46)
+setlocal foldenable
+141
+sil! normal! zo
+142
+sil! normal! zo
+143
+sil! normal! zo
+144
+sil! normal! zo
+145
+sil! normal! zo
+146
+sil! normal! zo
+147
+sil! normal! zo
+148
+sil! normal! zo
+176
+sil! normal! zo
+186
+sil! normal! zo
+187
+sil! normal! zo
+192
+sil! normal! zo
+193
+sil! normal! zo
+224
+sil! normal! zo
+253
+sil! normal! zo
+257
+sil! normal! zo
+let s:l = 10 - ((9 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 44
-normal! 019|
+keepjumps 10
+normal! 021|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

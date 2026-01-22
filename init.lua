@@ -1,6 +1,6 @@
 local safeRequire = require("lib").safeRequire
 safeRequire("config.normaliz_config")
--- yy text color
+
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	pattern = { "*" },
 	callback = function()
@@ -24,6 +24,7 @@ vim.g.loaded_netrwPlugin = 1
 
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
+
 local function my_on_attach(bufnr)
 	local api = require("nvim-tree.api")
 

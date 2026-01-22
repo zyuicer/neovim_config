@@ -1,7 +1,24 @@
 --[[ git帮助 ]]
 return {
+	"tpope/vim-fugitive", -- Git 工具
+	"sindrets/diffview.nvim", -- 可视化 diff
 	"lewis6991/gitsigns.nvim",
+	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
+		require("diffview").setup({
+			hooks = {
+				diff_buf_read = function(bufnr)
+					-- Change local options in diff buffers
+					vim.opt_local.wrap = false
+					vim.opt_local.list = false
+					vim.opt_local.colorcolumn = { 80 }
+				end,
+				view_opened = function(view)
+					print(("A new %s was opened on tab page %d!"):format(view.class:name(), view.tabpage))
+				end,
+			},
+		})
+
 		require("gitsigns").setup({
 			signs = {
 				add = { text = "│" },
@@ -24,7 +41,7 @@ return {
 			current_line_blame_opts = {
 				virt_text = true,
 				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-				delay = 1000,
+				delay = 250,
 				ignore_whitespace = false,
 				virt_text_priority = 100,
 			},

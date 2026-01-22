@@ -1,31 +1,16 @@
 return {
-	"saghen/blink.nvim",
-	build = "cargo build --release",
-	keys = {
-		-- chartoggle
+	"saghen/blink.cmp",
+	-- optional: provides snippets for the snippet source
+	dependencies = {
+		"rafamadriz/friendly-snippets",
 		{
-			"<C-;>",
-			function()
-				require("blink.chartoggle").toggle_char_eol(";")
-			end,
-			mode = { "n", "v" },
-			desc = "Toggle ; at eol",
+			"saghen/blink.compat",
+			optional = true,
+			version = "*",
 		},
-		{
-			",",
-			function()
-				require("blink.chartoggle").toggle_char_eol(",")
-			end,
-			mode = { "n", "v" },
-			desc = "Toggle , at eol",
-		},
-
-		-- tree
-		{ "<C-e>", "<cmd>BlinkTree reveal<cr>", desc = "Reveal current file in tree" },
-		{ "<leader>E", "<cmd>BlinkTree toggle<cr>", desc = "Reveal current file in tree" },
+		{ "L3MON4D3/LuaSnip", version = "v2.*" },
 	},
-	-- all modules handle lazy loading internally
-	lazy = false,
+	version = "1.*",
 	-- build = "cargo build --release",
 	opts = {
 		snippets = { preset = "luasnip" },
@@ -43,8 +28,8 @@ return {
 			},
 			documentation = {
 				auto_show = true,
-				window = { border = "rounded" },
 				auto_show_delay_ms = 200,
+				treesitter_highlighting = true,
 			},
 			ghost_text = {
 				enabled = vim.g.ai_cmp,
@@ -73,7 +58,7 @@ return {
 				},
 			},
 			list = {
-				selection = { preselect = true, auto_insert = true },
+				selection = { preselect = true, auto_insert = false },
 			},
 		},
 		cmdline = {
@@ -105,7 +90,8 @@ return {
 			["<Down>"] = { "select_next", "fallback" },
 			["<C-j>"] = { "select_next", "fallback" },
 			["<C-k>"] = { "select_prev", "fallback" },
-
+			["<Tab>"] = { "select_next", "fallback" },
+			["<S-Tab>"] = { "select_next", "fallback" },
 			-- disable a keymap from the preset
 			["<C-e>"] = {},
 
@@ -128,13 +114,5 @@ return {
 			},
 		},
 		fuzzy = { implementation = "prefer_rust_with_warning" },
-	},
-	dependencies = {
-		"rafamadriz/friendly-snippets",
-		{
-			"saghen/blink.compat",
-			optional = true,
-			version = "*",
-		},
 	},
 }
