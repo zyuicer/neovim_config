@@ -3,11 +3,18 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
+-- windown
+-- check windown
 keymap.set("n", "<C-l>", "<C-w>l", opt)
 keymap.set("n", "<C-h>", "<C-w>h", opt)
-
 keymap.set("n", "<C-j>", "<C-w>j", opt)
 keymap.set("n", "<C-k>", "<C-w>k", opt)
+-- resize windown
+keymap.set("n", "<M-h>", ":vertical resize -1<CR>", opt)
+keymap.set("n", "<M-l>", ":vertical resize +1<CR>", opt)
+keymap.set("n", "<M-k>", ":resize -1<CR>", opt)
+keymap.set("n", "<M-j>", ":resize +1<CR>", opt)
+--save
 keymap.set("n", "<C-s>", ":w<CR>", opt)
 
 keymap.set("n", "j", [[v:count ? 'j' : 'gj']], { noremap = true, expr = true })
@@ -23,10 +30,9 @@ keymap.set("v", ">", ">gv", opt)
 keymap.set("v", "<", "<gv", opt)
 keymap.set("v", "J", ":m '>+1<CR>gv=gv", opt)
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", opt)
-
 -- bufferline
-keymap.set("n", "<leader>h", ":BufferLineCyclePrev<CR>", opt)
-keymap.set("n", "<leader>l", ":BufferLineCycleNext<CR>", opt)
+-- keymap.set("n", "<leader>h", ":BufferLineCyclePrev<CR>", opt)
+-- keymap.set("n", "<leader>l", ":BufferLineCycleNext<CR>", opt)
 keymap.set("n", "<C-c>", ":bdelete<CR>", opt)
 
 --neotest test scheam

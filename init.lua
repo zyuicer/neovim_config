@@ -16,7 +16,27 @@ safeRequire("keymap")
 -- lazyNvim
 require("config.lazy")
 -- theme
-vim.cmd.colorscheme("dracula")
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function()
+		vim.api.nvim_set_hl(0, "LspReferenceText", {
+			fg = "#1bd6be",
+			bg = "#3a425f",
+			underline = true,
+		})
+
+		vim.api.nvim_set_hl(0, "LspReferenceRead", {
+			fg = "#1bd6be",
+			bg = "#3a425f",
+			underline = true,
+		})
+
+		-- vim.api.nvim_set_hl(0, "LspReferenceWrite", {
+		-- 	bg = "#30365a",
+		-- })
+	end,
+})
+
+vim.cmd.colorscheme("tokyonight-moon")
 --- nvim.tree
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1

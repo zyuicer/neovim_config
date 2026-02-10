@@ -3,6 +3,7 @@ vim.opt.termguicolors = true
 return {
 	"akinsho/bufferline.nvim",
 	dependencies = "nvim-tree/nvim-web-devicons",
+	enabled = false,
 	version = "*",
 	config = function()
 		local bufferline = require("bufferline")
@@ -27,9 +28,6 @@ return {
 						text_align = "left",
 					},
 				},
-				numbers = function(opts)
-					return string.format("%s", opts.ordinal)
-				end,
 			},
 		})
 	end,

@@ -60,7 +60,7 @@ local function symbol_info(bufnr, client)
 	end, bufnr)
 end
 
----@class ClangdInitializeResult: lsp.InitializeResult
+---@class ClangdInitializeResult: vim.lsp.protocol.InitializeResult
 ---@field offsetEncoding? string
 
 ---@type vim.lsp.Config

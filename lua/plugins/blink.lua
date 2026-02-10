@@ -104,10 +104,6 @@ return {
 			["<Up>"] = { "select_prev", "fallback" },
 			["<Down>"] = { "select_next", "fallback" },
 			["<C-j>"] = { "select_next", "fallback" },
-			["<C-k>"] = { "select_prev", "fallback" },
-
-			-- disable a keymap from the preset
-			["<C-e>"] = {},
 
 			-- show with a list of providers
 			["<C-space>"] = {
@@ -115,17 +111,7 @@ return {
 					cmp.show({ providers = { "snippets" } })
 				end,
 			},
-
 			-- control whether the next command will be run when using a function
-			["<C-n>"] = {
-				function(cmp)
-					if some_condition then
-						return
-					end -- runs the next command
-					return true -- doesn't run the next command
-				end,
-				"select_next",
-			},
 		},
 		fuzzy = { implementation = "prefer_rust_with_warning" },
 	},

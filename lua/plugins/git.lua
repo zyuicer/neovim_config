@@ -6,6 +6,14 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		require("diffview").setup({
+			keymaps = {
+				view = {
+					-- 在结果窗口中
+					["<leader>co"] = "<cmd>diffget LOCAL<CR>", -- choose ours
+					["<leader>ct"] = "<cmd>diffget REMOTE<CR>", -- choose theirs
+					["<leader>cb"] = "<cmd>diffget BASE<CR>", -- choose base
+				},
+			},
 			hooks = {
 				diff_buf_read = function(bufnr)
 					-- Change local options in diff buffers
@@ -36,18 +44,18 @@ return {
 				follow_files = true,
 			},
 			auto_attach = true,
-			attach_to_untracked = true,
+			attach_to_untracked = false,
 			current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
 			current_line_blame_opts = {
 				virt_text = true,
 				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-				delay = 250,
+				delay = 120,
 				ignore_whitespace = false,
 				virt_text_priority = 100,
 			},
 			current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
 			sign_priority = 6,
-			update_debounce = 100,
+			update_debounce = 200,
 			status_formatter = nil, -- Use default
 			max_file_length = 40000, -- Disable if file is longer than this (in lines)
 			preview_config = {

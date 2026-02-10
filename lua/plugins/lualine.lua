@@ -3,6 +3,7 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {},
 	config = function()
+		local navic = require("nvim-navic")
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
@@ -10,12 +11,18 @@ return {
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
-					statusline = {},
-					winbar = {},
+					statusline = {
+					},
+					winbar = {
+						"toggleterm",
+						"trouble",
+						"Trouble",
+						"NvimTree"
+					},
 				},
 				ignore_focus = {},
 				always_divide_middle = true,
-				globalstatus = false,
+				globalstatus = true,
 				refresh = {
 					statusline = 1000,
 					tabline = 1000,
@@ -25,7 +32,10 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = { "filename", "%F" },
+				lualine_c = {
+					"filename",
+					"%F",
+				},
 				lualine_x = { "encoding", "fileformat", "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
@@ -39,7 +49,21 @@ return {
 				lualine_z = {},
 			},
 			tabline = {},
-			winbar = {},
+			winbar = {
+				lualine_c = {
+					{
+						"filename",
+					},
+					{
+						function()
+							return navic.get_location()
+						end,
+						cond = function()
+							return navic.is_available()
+						end,
+					},
+				},
+			},
 			inactive_winbar = {},
 			extensions = {},
 		})

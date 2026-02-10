@@ -16,6 +16,11 @@ return {
 			desc = "Fuzzy find the file than open",
 		},
 		{
+			"-",
+			":FzfLua buffers<CR>",
+			desc = "Fuzzy find file into buffers",
+		},
+		{
 			"<leader>n",
 			":FzfLua blines<CR>",
 			desc = "Fuzzy find the file than open",
@@ -26,7 +31,7 @@ return {
 		},
 		{
 			"<leader>H",
-			":FzfLua jumps<CR>"
+			":FzfLua jumps<CR>",
 		},
 		{
 			"<leader>cc",

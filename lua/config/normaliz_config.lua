@@ -13,6 +13,16 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 	end,
 })
 
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		local ok, gs = pcall(require, "gitsigns")
+		if ok then
+			gs.toggle_current_line_blame(true)
+		end
+	end,
+})
+
 local o_options = {
 	tabstop = 2,
 	softtabstop = 2,
@@ -37,11 +47,10 @@ vim.diagnostic.config({
 	},
 })
 
-
 -- toggleterm
 vim.api.nvim_create_autocmd("TermOpen", {
-  pattern = "term://*",
-  callback = function()
-    vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { buffer = true, silent = true })
-  end
+	pattern = "term://*",
+	callback = function()
+		vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { buffer = true, silent = true })
+	end,
 })

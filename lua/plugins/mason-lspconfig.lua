@@ -11,6 +11,11 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
+				local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+				if client and client.server_capabilities.documentSymbolProvider then
+					require("nvim-navic").attach(client, ev.buf)
+				end
 				-- Enable completion triggered by <c-x><c-o>
 				vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
@@ -21,7 +26,7 @@ return {
 				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-				vim.keymap.set("n", "<C-K>", vim.lsp.buf.signature_help, opts)
+				vim.keymap.set("n", "gk", vim.lsp.buf.signature_help, opts)
 
 				vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
 				vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
@@ -55,38 +60,6 @@ return {
 			automatic_installation = true,
 		})
 
-		-- -- Rust
-		-- configs.rust_analyzer = vim.lsp.config("rust_analyzer", {
-		-- 	settings = {
-		-- 		["rust-analyzer"] = {
-		-- 			inlayHints = {
-		-- 				enable = true,
-		-- 				typeHints = { enable = true },
-		-- 				parameterHints = { enable = true },
-		-- 				chainingHints = { enable = true },
-		-- 			},
-		-- 		},
-		-- 	},
-		-- 	on_attach = function(_, bufnr)
-		-- 		if vim.lsp.inlay_hint then
-		-- 			vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-		-- 		else
-		-- 			vim.lsp.buf.inlay_hint(bufnr, true)
-		-- 		end
-		-- 	end,
-		-- })
-		--
-		-- -- Lua
-		-- configs.lua_ls = vim.lsp.config("lua_ls", {
-		-- 	settings = {
-		-- 		Lua = {
-		-- 			workspace = { checkThirdParty = false },
-		-- 			diagnostics = { globals = { "vim" } },
-		-- 		},
-		-- 	},
-		-- })
-		-- -- 启用所有配置（关键）
-		-- vim.lsp.enable(configs)
 		require("lsp.init")
 	end,
 }
